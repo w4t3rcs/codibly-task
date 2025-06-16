@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class MeteoWeeklyWeatherForecastResponse implements Serializable {
+public class MeteoWeeklyWeatherStatisticsResponse implements Serializable {
     @JsonProperty("daily")
-    private MeteoDailyWeatherForecastResponse dailyForecast;
+    private MeteoDailyWeatherStatisticsResponse dailyStatistics;
 }
