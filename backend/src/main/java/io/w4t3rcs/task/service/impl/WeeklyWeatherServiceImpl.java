@@ -1,7 +1,10 @@
 package io.w4t3rcs.task.service.impl;
 
-import io.w4t3rcs.task.component.UrlBuilder;
-import io.w4t3rcs.task.dto.*;
+import io.w4t3rcs.task.component.WeatherUrlBuilder;
+import io.w4t3rcs.task.dto.MeteoWeeklyWeatherForecastResponse;
+import io.w4t3rcs.task.dto.MeteoWeeklyWeatherStatisticsResponse;
+import io.w4t3rcs.task.dto.WeeklyWeatherForecastResponse;
+import io.w4t3rcs.task.dto.WeeklyWeatherStatisticsResponse;
 import io.w4t3rcs.task.mapper.WeeklyWeatherForecastMapper;
 import io.w4t3rcs.task.mapper.WeeklyWeatherStatisticsMapper;
 import io.w4t3rcs.task.service.WeeklyWeatherService;
@@ -15,14 +18,15 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class WeeklyWeatherServiceImpl implements WeeklyWeatherService {
     private final RestClient restClient;
-    private final UrlBuilder<WeatherRequest> weeklyForecastUrlBuilder;
-    private final UrlBuilder<WeatherRequest> weeklyStatisticsUrlBuilder;
+    private final WeatherUrlBuilder weeklyForecastUrlBuilder;
+    private final WeatherUrlBuilder weeklyStatisticsUrlBuilder;
     private final WeeklyWeatherForecastMapper forecastMapper;
     private final WeeklyWeatherStatisticsMapper statisticsMapper;
 
     @Override
-    public WeeklyWeatherForecastResponse getForecast(WeatherRequest request) {
-        String url = weeklyForecastUrlBuilder.buildUrl(request);
+    public WeeklyWeatherForecastResponse getForecast(Double longitude, Double latitude) {
+        if (latitude < -90 || latitude > 90) throw new IllegalArgumentException("Latitude must be between -90 and 90.");
+        String url = weeklyForecastUrlBuilder.buildUrl(longitude, latitude);
         MeteoWeeklyWeatherForecastResponse response = restClient.get()
                 .uri(url)
                 .retrieve()
@@ -31,8 +35,9 @@ public class WeeklyWeatherServiceImpl implements WeeklyWeatherService {
     }
 
     @Override
-    public WeeklyWeatherStatisticsResponse getStatistics(WeatherRequest request) {
-        String url = weeklyStatisticsUrlBuilder.buildUrl(request);
+    public WeeklyWeatherStatisticsResponse getStatistics(Double longitude, Double latitude) {
+        if (latitude < -90 || latitude > 90) throw new IllegalArgumentException("Latitude must be between -90 and 90.");
+        String url = weeklyStatisticsUrlBuilder.buildUrl(longitude, latitude);
         MeteoWeeklyWeatherStatisticsResponse response = restClient.get()
                 .uri(url)
                 .retrieve()

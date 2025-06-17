@@ -1,15 +1,16 @@
 package io.w4t3rcs.task.component.impl;
 
-import io.w4t3rcs.task.component.UrlBuilder;
-import io.w4t3rcs.task.dto.WeatherRequest;
+import io.w4t3rcs.task.component.WeatherUrlBuilder;
 import org.springframework.stereotype.Component;
 
 @Component
-public class WeeklyForecastUrlBuilder implements UrlBuilder<WeatherRequest> {
-    public static final String URL_FORMAT = "/forecast?latitude=%f&longitude=%f&daily=weather_code,temperature_2m_max,temperature_2m_min,sunshine_duration&timezone=%s";
+public class WeeklyForecastUrlBuilder implements WeatherUrlBuilder {
+    public static final String URL_FORMAT = "/forecast?longitude=%s&latitude=%s&daily=weather_code,temperature_2m_max,temperature_2m_min,sunshine_duration";
 
     @Override
-    public String buildUrl(WeatherRequest request) {
-        return URL_FORMAT.formatted(request.getLatitude(), request.getLongitude(), request.getTimeZone());
+    public String buildUrl(Double longitude, Double latitude) {
+        String longitudeString = longitude.toString().replace(",", ".");
+        String latitudeString = latitude.toString().replace(",", ".");
+        return URL_FORMAT.formatted(longitudeString, latitudeString);
     }
 }
