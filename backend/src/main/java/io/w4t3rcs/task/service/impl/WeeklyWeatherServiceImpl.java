@@ -25,7 +25,7 @@ public class WeeklyWeatherServiceImpl implements WeeklyWeatherService {
 
     @Override
     public WeeklyWeatherForecastResponse getForecast(Double longitude, Double latitude) {
-        checkLongitudeAndLatitude(longitude, latitude);
+        validateLongitudeAndLatitude(longitude, latitude);
         String url = weeklyForecastUrlBuilder.buildUrl(longitude, latitude);
         MeteoWeeklyWeatherForecastResponse response = restClient.get()
                 .uri(url)
@@ -36,7 +36,7 @@ public class WeeklyWeatherServiceImpl implements WeeklyWeatherService {
 
     @Override
     public WeeklyWeatherStatisticsResponse getStatistics(Double longitude, Double latitude) {
-        checkLongitudeAndLatitude(longitude, latitude);
+        validateLongitudeAndLatitude(longitude, latitude);
         String url = weeklyStatisticsUrlBuilder.buildUrl(longitude, latitude);
         MeteoWeeklyWeatherStatisticsResponse response = restClient.get()
                 .uri(url)
@@ -45,7 +45,7 @@ public class WeeklyWeatherServiceImpl implements WeeklyWeatherService {
         return statisticsMapper.mapFromMeteoWeeklyWeatherStatistics(Objects.requireNonNull(response));
     }
 
-    private void checkLongitudeAndLatitude(Double longitude, Double latitude) {
+    private void validateLongitudeAndLatitude(Double longitude, Double latitude) {
         if (latitude < -90 || latitude > 90) throw new IllegalArgumentException("Latitude must be between -90 and 90.");
         if (longitude < -180 || longitude > 180) throw new IllegalArgumentException("Longitude must be between -180 and 180.");
     }

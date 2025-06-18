@@ -9,9 +9,9 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor @NoArgsConstructor
 public class WeeklyWeatherStatisticsResponse implements Serializable {
-    Double maxTemperature;
-    Double minTemperature;
-    Double averageSurfacePressure;
-    Double averageSunshineDuration;
-    WeekPrecipitationStatus precipitationStatus;
+    private Double maxTemperature;
+    private Double minTemperature;
+    private Double averageSurfacePressure;
+    private Double averageSunshineDuration;
+    private WeekPrecipitationStatus precipitationStatus;
 }
