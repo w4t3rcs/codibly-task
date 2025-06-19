@@ -1,12 +1,17 @@
 package io.w4t3rcs.task.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 
+@Builder
 @Data
+@AllArgsConstructor @NoArgsConstructor
 public class MeteoDailyWeatherForecastResponse implements Serializable {
     @JsonProperty("time")
     private LocalDate[] dates;

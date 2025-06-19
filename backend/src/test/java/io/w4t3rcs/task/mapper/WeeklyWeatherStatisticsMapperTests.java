@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
-public class WeeklyWeatherStatisticsMapperTest {
+public class WeeklyWeatherStatisticsMapperTests {
     private static MeteoWeeklyWeatherStatisticsResponse meteoWeeklyStatistics;
     private static WeeklyWeatherStatisticsResponse weeklyStatistics;
     private static WeeklyWeatherStatisticsMapper mapper;
