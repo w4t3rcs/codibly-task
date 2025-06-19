@@ -38,7 +38,7 @@ public class WeeklyWeatherServiceTests {
 
     @BeforeAll
     static void init() {
-        MeteoDailyWeatherForecastResponse meteoDailyForecast = MeteoDailyWeatherForecastResponse.builder()
+        var meteoDailyForecast = MeteoDailyWeatherForecastResponse.builder()
                 .dates(new LocalDate[]{LocalDate.now(), LocalDate.now().plusDays(1), LocalDate.now().plusDays(2)})
                 .weatherCodes(new Integer[]{0, 61, 99})
                 .maxTemperatures(new Double[]{15D, 12.4D, 18.03D})
@@ -46,7 +46,7 @@ public class WeeklyWeatherServiceTests {
                 .sunshineDurations(new Double[]{13515.8D, 166854.24D, 97457D})
                 .build();
         meteoWeeklyForecast = new MeteoWeeklyWeatherForecastResponse(meteoDailyForecast);
-        DailyWeatherForecastResponse[] dailyForecast = new DailyWeatherForecastResponse[]{
+        var dailyForecast = new DailyWeatherForecastResponse[]{
                 new DailyWeatherForecastResponse(LocalDate.now(), 0, 15D, 6D, 0D),
                 new DailyWeatherForecastResponse(LocalDate.now().plusDays(1), 61, 12.4D, -0.8D, 0D),
                 new DailyWeatherForecastResponse(LocalDate.now().plusDays(2), 99, 18.03D, -183D, 0D)
