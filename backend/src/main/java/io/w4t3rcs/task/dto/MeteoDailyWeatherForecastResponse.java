@@ -11,7 +11,7 @@ public class MeteoDailyWeatherForecastResponse implements Serializable {
     @JsonProperty("time")
     private LocalDate[] dates;
     @JsonProperty("weather_code")
-    private String[] weatherCodes;
+    private Integer[] weatherCodes;
     @JsonProperty("temperature_2m_max")
     private Double[] maxTemperatures;
     @JsonProperty("temperature_2m_min")

@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @AllArgsConstructor @NoArgsConstructor
 public class DailyWeatherForecastResponse {
     private LocalDate date;
-    private String weatherCode;
+    private Integer weatherCode;
     private Double maxTemperature;
     private Double minTemperature;
     private Double estimatedEnergy;

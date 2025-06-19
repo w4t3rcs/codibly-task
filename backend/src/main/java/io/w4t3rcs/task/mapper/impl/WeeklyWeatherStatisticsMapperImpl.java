@@ -12,6 +12,7 @@ import java.util.Arrays;
 @Component
 public class WeeklyWeatherStatisticsMapperImpl implements WeeklyWeatherStatisticsMapper {
     public static final int WEEK_HALF = 4;
+    public static final int DRIZZLE_WEATHER_CODE = 51;
 
     @Override
     public WeeklyWeatherStatisticsResponse mapFromMeteoWeeklyWeatherStatistics(MeteoWeeklyWeatherStatisticsResponse statistics) {
@@ -30,8 +31,8 @@ public class WeeklyWeatherStatisticsMapperImpl implements WeeklyWeatherStatistic
                 .mapToDouble(Double::doubleValue)
                 .average()
                 .orElse(0D);
-        long precipitationCount = Arrays.stream(dailyStatistics.getPrecipitationSums())
-                .filter(d -> d == 0)
+        long precipitationCount = Arrays.stream(dailyStatistics.getWeatherCodes())
+                .filter(i -> i >= DRIZZLE_WEATHER_CODE)
                 .count();
         WeekPrecipitationStatus precipitationStatus = precipitationCount < WEEK_HALF
                 ? WeekPrecipitationStatus.WITHOUT_PRECIPITATION
