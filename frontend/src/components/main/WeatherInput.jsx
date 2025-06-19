@@ -6,7 +6,7 @@ import {LeafletMap} from "../map/LeafletMap.jsx";
 
 function handleSubmit(handler, endpoint, longitude, latitude) {
     if (longitude === undefined || latitude === undefined) return;
-    axios.get("http://localhost:8080/api/v1/weather/" + endpoint, {
+    axios.get("https://w4t3rcs-codibly-task-backend.onrender.com/api/v1/weather/" + endpoint, {
         params: {
             longitude: longitude,
             latitude: latitude,
