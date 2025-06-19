@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/weather")
-@CrossOrigin("http://localhost:5173/")
+@CrossOrigin("https://w4t3rcs-codibly-task-frontend.onrender.com/")
 @RequiredArgsConstructor
 public class WeeklyWeatherController {
     private final WeeklyWeatherService weeklyWeatherService;
