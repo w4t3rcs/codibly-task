@@ -59,12 +59,12 @@ export const WeatherInput = () => {
                 </div>
             </div>
             {forecastData === undefined || forecastData === null
-                ? <div className="flex items-center justify-center h-screen">
+                ? <div className="flex items-center justify-center">
                     <Loader className="animate-spin w-12 h-12 text-blue-500" />
                 </div>
                 : <WeatherForecastTable data={forecastData.dailyWeatherForecasts} />}
             {statisticsData === undefined || statisticsData === null
-                ? <div className="flex items-center justify-center h-screen">
+                ? <div className="flex items-center justify-center">
                     <Loader className="animate-spin w-12 h-12 text-blue-500" />
                 </div>
                 : <WeatherStatisticsFooter data={statisticsData} />}
