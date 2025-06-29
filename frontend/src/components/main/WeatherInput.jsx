@@ -3,7 +3,8 @@ import axios from "axios";
 import {WeatherForecastTable} from "../forecast/WeatherForecastTable.jsx";
 import {WeatherStatisticsFooter} from "../statistics/WeatherStatisticsFooter.jsx";
 import {LeafletMap} from "../map/LeafletMap.jsx";
-import {Loader} from "lucide-react";
+import {Squircle} from 'ldrs/react'
+import 'ldrs/react/Squircle.css'
 
 function handleSubmit(handler, endpoint, longitude, latitude) {
     if (longitude === undefined || latitude === undefined) return;
@@ -32,7 +33,7 @@ export const WeatherInput = () => {
         handleSubmit(setForecastData, "forecast", longitude, latitude);
         handleSubmit(setStatisticsData, "statistics", longitude, latitude);
     }, [longitude, latitude])
-    
+
     return (
         <div className="flex flex-col items-center gap-6 p-4">
             <LeafletMap inputLatitude={latitude} inputLatitudeHandler={setLatitude} inputLongitude={longitude} inputLongitudeHandler={setLongitude} />
@@ -60,12 +61,26 @@ export const WeatherInput = () => {
             </div>
             {forecastData === undefined || forecastData === null
                 ? <div className="flex items-center justify-center">
-                    <Loader className="animate-spin w-12 h-12 text-blue-500" />
+                    <Squircle
+                        size="37"
+                        stroke="5"
+                        strokeLength="0.15"
+                        bgOpacity="0.1"
+                        speed="0.9"
+                        color="#2b7fff"
+                    />
                 </div>
                 : <WeatherForecastTable data={forecastData.dailyWeatherForecasts} />}
             {statisticsData === undefined || statisticsData === null
                 ? <div className="flex items-center justify-center">
-                    <Loader className="animate-spin w-12 h-12 text-blue-500" />
+                    <Squircle
+                        size="37"
+                        stroke="5"
+                        strokeLength="0.15"
+                        bgOpacity="0.1"
+                        speed="0.9"
+                        color="#2b7fff"
+                    />
                 </div>
                 : <WeatherStatisticsFooter data={statisticsData} />}
         </div>
