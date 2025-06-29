@@ -58,10 +58,10 @@ export const WeatherInput = () => {
                 </div>
             </div>
             {forecastData === undefined || forecastData === null
-                ? <p>Trwa Ładowanie Tabeli</p>
+                ? <p className="relative w-full h-full border text-xs text-gray-700 dark:text-gray-400">Trwa Ładowanie Tabeli</p>
                 : <WeatherForecastTable data={forecastData.dailyWeatherForecasts} />}
             {statisticsData === undefined || statisticsData === null
-                ? <p>Trwa Ładowanie Statystyki</p>
+                ? <p className="relative w-full h-full border text-xs text-gray-700 dark:text-gray-400">Trwa Ładowanie Statystyki</p>
                 : <WeatherStatisticsFooter data={statisticsData} />}
         </div>
     )
