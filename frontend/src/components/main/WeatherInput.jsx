@@ -3,7 +3,7 @@ import axios from "axios";
 import {WeatherForecastTable} from "../forecast/WeatherForecastTable.jsx";
 import {WeatherStatisticsFooter} from "../statistics/WeatherStatisticsFooter.jsx";
 import {LeafletMap} from "../map/LeafletMap.jsx";
-import {ThreeDots} from "react-loading-icons";
+import {Loader} from "lucide-react";
 
 function handleSubmit(handler, endpoint, longitude, latitude) {
     if (longitude === undefined || latitude === undefined) return;
@@ -59,10 +59,14 @@ export const WeatherInput = () => {
                 </div>
             </div>
             {forecastData === undefined || forecastData === null
-                ? <ThreeDots stroke={"#99a1af"} />
+                ? <div className="flex items-center justify-center h-screen">
+                    <Loader className="animate-spin w-12 h-12 text-blue-500" />
+                </div>
                 : <WeatherForecastTable data={forecastData.dailyWeatherForecasts} />}
             {statisticsData === undefined || statisticsData === null
-                ? <ThreeDots stroke={"#99a1af"} />
+                ? <div className="flex items-center justify-center h-screen">
+                    <Loader className="animate-spin w-12 h-12 text-blue-500" />
+                </div>
                 : <WeatherStatisticsFooter data={statisticsData} />}
         </div>
     )
