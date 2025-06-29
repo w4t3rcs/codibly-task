@@ -25,7 +25,7 @@ function handleChange(handler) {
 export const WeatherInput = () => {
     const [longitude, setLongitude] = useState(23);
     const [latitude, setLatitude] = useState(50);
-    const [forecastData, setForecastData] = useState({});
+    const [forecastData, setForecastData] = useState();
     const [statisticsData, setStatisticsData] = useState();
     useEffect(() => {
         handleSubmit(setForecastData, "forecast", longitude, latitude);
@@ -57,8 +57,12 @@ export const WeatherInput = () => {
                     />
                 </div>
             </div>
-            <WeatherForecastTable data={forecastData.dailyWeatherForecasts} />
-            <WeatherStatisticsFooter data={statisticsData} />
+            {forecastData === undefined || forecastData === null
+                ? <p>Trwa Ładowanie Tabeli</p>
+                : <WeatherForecastTable data={forecastData.dailyWeatherForecasts} />}
+            {statisticsData === undefined || statisticsData === null
+                ? <p>Trwa Ładowanie Statystyki</p>
+                : <WeatherStatisticsFooter data={statisticsData} />}
         </div>
     )
 }
