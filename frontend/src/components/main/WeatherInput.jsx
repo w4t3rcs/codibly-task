@@ -59,10 +59,10 @@ export const WeatherInput = () => {
                 </div>
             </div>
             {forecastData === undefined || forecastData === null
-                ? <Circles color={"#99a1af"} />
+                ? <Circles stroke={"#99a1af"} />
                 : <WeatherForecastTable data={forecastData.dailyWeatherForecasts} />}
             {statisticsData === undefined || statisticsData === null
-                ? <Circles color={"#99a1af"} />
+                ? <Circles stroke={"#99a1af"} />
                 : <WeatherStatisticsFooter data={statisticsData} />}
         </div>
     )
