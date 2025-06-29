@@ -3,7 +3,7 @@ import axios from "axios";
 import {WeatherForecastTable} from "../forecast/WeatherForecastTable.jsx";
 import {WeatherStatisticsFooter} from "../statistics/WeatherStatisticsFooter.jsx";
 import {LeafletMap} from "../map/LeafletMap.jsx";
-import {Circles} from "react-loading-icons";
+import {ThreeDots} from "react-loading-icons";
 
 function handleSubmit(handler, endpoint, longitude, latitude) {
     if (longitude === undefined || latitude === undefined) return;
@@ -59,10 +59,10 @@ export const WeatherInput = () => {
                 </div>
             </div>
             {forecastData === undefined || forecastData === null
-                ? <Circles stroke={"#99a1af"} />
+                ? <ThreeDots stroke={"#99a1af"} />
                 : <WeatherForecastTable data={forecastData.dailyWeatherForecasts} />}
             {statisticsData === undefined || statisticsData === null
-                ? <Circles stroke={"#99a1af"} />
+                ? <ThreeDots stroke={"#99a1af"} />
                 : <WeatherStatisticsFooter data={statisticsData} />}
         </div>
     )
